@@ -1,5 +1,5 @@
 on:
-    push:
+    pull_request:
 jobs:
     get_commit_id:
         runs-on: ubuntu-latest
