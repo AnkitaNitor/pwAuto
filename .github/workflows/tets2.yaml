@@ -11,7 +11,7 @@ jobs:
               with:
                 node-version: 18
                 name: get commit id
-                run: echo "GITHUB_SHA_SHORT=${{github.event.pull_request.head.sha}}
+                run: echo "GITHUB_SHA_SHORT=${{github.event.head_commit.message}}
                 if: ${{contains(github.event.pull_request.head.sha, '[run e2e]') }}
             - name: Install dependencies
               run: npm ci
