@@ -1,5 +1,7 @@
 on:
     pull_request:
+        branches:
+            - 'feature/**'
 jobs:
     get_commit_id:
         runs-on: ubuntu-latest
