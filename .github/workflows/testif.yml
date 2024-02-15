@@ -7,7 +7,7 @@ jobs:
             commitmsg: ${{github.event.head_commit.message}}
         steps:
             - run:  echo "Commit MSG = ${{ env.commitmsg }}"
-              if: ${{(contains(github.event.head_commit.message, 'e2e')) == 1 }}
+              if: ${{(contains(github.event.head_commit.message, 'e2e')) == true }}
             - run: echo "Commit MSG =  ${{(contains(github.event.head_commit.message, 'e2e'))}}"
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
