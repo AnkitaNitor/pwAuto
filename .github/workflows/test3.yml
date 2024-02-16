@@ -1,0 +1,25 @@
+on:
+    push:
+        branches:
+             - 'feature/**'
+             - master
+jobs:
+    approved:
+        runs-on: ubuntu-latest
+        env: 
+            commitmsg: ${{github.event.head_commit.message}}
+        steps:
+          - uses: actions/checkout@v3
+          - uses: actions/setup-node@v3
+            with:
+              node-version: 18
+          - run: echo "validate commit msg"
+          - run: |
+             if [ ${{ (contains(github.event.head_commit.message, 'e2e')) == true }} ]; then
+              echo "Commit MSG =  ${{(contains(github.event.head_commit.message, 'e2e'))}}"
+              run: npm ci
+              run: npx playwright install --with-deps
+              run: npx playwright test
+           
+
+             
