@@ -5,7 +5,6 @@ on:
              - master
 jobs:
   prod-test:
-    if:  ${{(contains(github.event.pull_request.commits_url, 'e2e')) }}
     runs-on: ubuntu-latest
     env:
      commitmsg: ${{github.event.pull_request.commits_url}}
