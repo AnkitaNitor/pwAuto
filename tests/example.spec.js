@@ -23,6 +23,6 @@ test(`hello world`, async({page}) =>{
 })
 
 test(`hello worldnhdjwhdwj`, async({page}) =>{
-  await console.log(`Hello jcdjdhehfiewfh jdcdcksjd`);
+  await console.log(`Hello jcdjdhehfiewfh jdcdcksjccccccd`);
 }
 );
