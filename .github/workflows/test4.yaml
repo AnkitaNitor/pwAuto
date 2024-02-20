@@ -6,10 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     env: 
        commitmsg: "rune2e_src/test"
-       var2: ""
 
     steps:
       - name: "split msg"
         run: |
-         var2=$(echo ${{env.commitmsg}} | cut -f2 -d-)
-         echo "varible is ${{env.var2}}"
+         var2 = env.commitmsg | cut -f2 -d-
+         echo "varible is $var2"
