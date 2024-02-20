@@ -16,4 +16,6 @@ jobs:
 
         - name: Set env var
           run: |
-            echo commit=$(git log --format=%B -n 1) >> $GITHUB_ENV
+            echo =$(gitcommit log --format=%B -n 1) >> $GITHUB_ENV
+            echo "commit msg : $commit"
+        
