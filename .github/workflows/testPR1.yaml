@@ -30,7 +30,7 @@ jobs:
           IFS='-' read -r Var1 Var2 <<< "${{ needs.get_pr_title.outputs.body }}"
           echo "Part 1: $Var1"
           echo "Part 2: $Var2"
-          uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 18
