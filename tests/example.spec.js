@@ -19,7 +19,7 @@ test('get started link', async ({ page }) => {
 })
 
 test(`hello world`, async({page}) =>{
-  await console.log(`Hello Jhioooooooooo jdcdcksjddcccccn mcccccccwndnxxxxxxxxxxxxdmdmedd`);
+  await console.log(`Hello Jhioooooooooo jdcdcksjddcccccn mcccCCCCCCccccwndnxxxxxxxxxxxxdmdmedd`);
 })
 
 test(`hello worldnhdjwhdwj`, async({page}) =>{
