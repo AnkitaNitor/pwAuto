@@ -1,8 +1,6 @@
 on:
-  push:
-      branches:
-           - 'feature/**'
-           - master
+  pull_request:
+      
 jobs:
    print_title_of_pr:
     runs-on: ubuntu-latest
