@@ -5,11 +5,19 @@ jobs:
   production-deploy:
     runs-on: ubuntu-latest
     env: 
-       commitmsg: "rune2e_src/test"
+       commitmsg: 
        var2: ""
 
     steps:
       - name: "split msg"
         run: |
-         $env.var2 = ${env.commitmsg} | cut -f2 -d-
-         echo "varible is ${var2}"
+          # Define your string
+          MY_STRING="rune2e-src/test"
+
+          # Split the string using the delimiter "-"
+          IFS='-' read -r Var1 Var2 <<< "$MY_STRING"
+
+          # Print the two parts
+          echo "Part 1: $Var1"
+          echo "Part 2: $Var2"
+
