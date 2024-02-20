@@ -1,17 +1,15 @@
 on:
-  pull_request:
-
+  push:
+    
 jobs:
-  deploy-to-dev:
-      name: deploy to dev
-      runs-on: ubuntu-22.04
-      steps:
+  production-deploy:
+    runs-on: ubuntu-latest
+    env: 
+       commitmsg: "rune2e_src/test"
+       var2: ""
 
-        - name: checkout repo
-          uses: actions/checkout@v3
-
-        - name: Set env var
-          run: |
-            echo =$(gitcommit log --format=%B -n 1) >> $GITHUB_ENV
-            echo "commit msg : $commit"
-        
+    steps:
+      - name: "split msg"
+        run: |
+         var2=$(echo ${{env.commitmsg}} | cut -f2 -d-)
+         echo "varible is ${{env.var2}}"
