@@ -1,0 +1,16 @@
+on:
+  push:
+      branches:
+           - 'feature/**'
+           - master
+jobs:
+   print_title_of_pr:
+    runs-on: ubuntu-latest
+    env:
+        commitmsg: ${{ github.event.pull_request.title }}
+        body: ${{ github.event.pull_request.body }}
+    steps:
+    - name: Print Title of PR
+      run: echo "Commit MSG = ${{ env.commitmsg }}"
+    - name: body is
+      run: echo "Commit MSG = ${{ env.body }}"
