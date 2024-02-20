@@ -1,0 +1,17 @@
+on:
+  pull_request:
+
+jobs:
+    check_commit_msg:
+        name: check_commit_msg
+        runs-on: ubuntu-latest
+        steps:
+            - name: get repo
+              uses: actions/checkout@v3
+              with:
+                ref: ${{ github.event.pull_request.head.sha }}
+            - name: Print head git commit message 
+              run: |
+                 echo "$(git show -s --format=%s)" 
+
+
