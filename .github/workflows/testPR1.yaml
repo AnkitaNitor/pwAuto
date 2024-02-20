@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: echo "Commit MSG = ${{ env.commitmsg }}"
+      - run: echo "pr = ${{ needs.get_pr_title.outputs.body }}"
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
