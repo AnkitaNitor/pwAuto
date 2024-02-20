@@ -1,14 +1,33 @@
 on:
   pull_request:
-      
+    
 jobs:
-   print_title_of_pr:
+  get_pr_title:
+    name: get_pr_title
     runs-on: ubuntu-latest
+    outputs: 
+      body: ${{ steps.description.outputs.descriptionOfPR }}
     env:
-        commitmsg: ${{ github.event.pull_request.title }}
-        body: ${{ github.event.pull_request.body }}
+      title: ${{ github.event.pull_request.title }}
+      body: ${{ github.event.pull_request.body }}
     steps:
-    - name: Print Title of PR
-      run: echo "Commit MSG = ${{ env.commitmsg }}"
-    - name: body is
-      run: echo "Commit MSG = ${{ env.body }}"
+      - name: Print Title of PR
+        run: echo "Title  = ${{ env.title }}"
+      - name: Print Body of PR
+        id: description
+        run: echo "::set-output name=body::${{ env.body }}"
+
+  get_folder_path:
+    name: get_folder_path
+    needs: get_pr_title
+    if: ${{ startsWith(needs.get_pr_title.outputs.body, 'RUNE2E') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Split description
+        run: |
+        
+          IFS='-' read -r Var1 Var2 <<< "${{needs.get_pr_title.outputs.body}}"
+
+          # Print the two parts
+          echo "Part 1: $Var1"
+          echo "Part 2: $Var2"
