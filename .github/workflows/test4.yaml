@@ -1,9 +1,7 @@
 name: Dev deploy
 
 on:
-    
   pull_request:
-      types: [opened, reopened, edited, synchronize]
 
 jobs:
   deploy-to-dev:
