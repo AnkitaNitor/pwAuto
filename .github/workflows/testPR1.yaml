@@ -28,7 +28,8 @@ jobs:
         if: startsWith(needs.get_pr_title.outputs.body, 'RUNE2E')
         run: |
           IFS='-' read -r Var1 Var2 <<< "${{ needs.get_pr_title.outputs.body }}"
-
-          # Print the two parts
           echo "Part 1: $Var1"
           echo "Part 2: $Var2"
+        
+        
+        
