@@ -22,10 +22,11 @@ jobs:
     needs: get_pr_title
     runs-on: ubuntu-latest
     steps:
+      - name: Echo PR Body
+        run: echo "PR Body = ${{ needs.get_pr_title.outputs.body }}"
       - name: Split description
         if: startsWith(needs.get_pr_title.outputs.body, 'RUNE2E')
         run: |
-          echo "title = ${{ needs.get_pr_title.outputs.body }}"
           IFS='-' read -r Var1 Var2 <<< "${{ needs.get_pr_title.outputs.body }}"
 
           # Print the two parts
