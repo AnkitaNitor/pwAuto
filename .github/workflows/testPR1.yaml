@@ -6,7 +6,7 @@ jobs:
     name: get_pr_title
     runs-on: ubuntu-latest
     outputs: 
-      body: ${{ steps.description.outputs.descriptionOfPR }}
+      body: ${{ steps.description.outputs.body }}
     env:
       title: ${{ github.event.pull_request.title }}
       body: ${{ github.event.pull_request.body }}
@@ -20,13 +20,13 @@ jobs:
   get_folder_path:
     name: get_folder_path
     needs: get_pr_title
-    if: ${{ startsWith(needs.get_pr_title.outputs.body, 'RUNE2E') }}
     runs-on: ubuntu-latest
     steps:
       - name: Split description
+        if: startsWith(needs.get_pr_title.outputs.body, 'RUNE2E')
         run: |
-        
-          IFS='-' read -r Var1 Var2 <<< "${{needs.get_pr_title.outputs.body}}"
+          echo "title = ${{ needs.get_pr_title.outputs.body }}"
+          IFS='-' read -r Var1 Var2 <<< "${{ needs.get_pr_title.outputs.body }}"
 
           # Print the two parts
           echo "Part 1: $Var1"
