@@ -44,7 +44,7 @@ jobs:
       - name: Debug Var2
         run: echo "Var2 = ${{ needs.get_folder_path.outputs.Var2 }}"
       - name: Run Playwright tests
-        run: npx playwright test  ${{ needs.get_folder_path.outputs.Var2 }}" --project chromium
+        run: npx playwright test  ${{ needs.get_folder_path.outputs.Var2 }} --project chromium
       - uses: actions/upload-artifact@v3
         if: always()
         with:
