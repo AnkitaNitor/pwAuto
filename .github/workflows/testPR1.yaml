@@ -30,7 +30,7 @@ jobs:
           IFS='-' read -r Var1 Var2 <<< "${{ needs.get_pr_title.outputs.body }}"
           echo "Part 1: $Var1"
           echo "Part 2: $Var2"
-          echo "::set-output name=Var2::$Var2" # Debugging step to verify the value of Var2
+          echo "::set-output name=Var2::$Var2"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Node.js
@@ -43,7 +43,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test "${{ needs.get_folder_path.outputs.Var2 }}"
+        run: npx playwright test --project chromium ${{ needs.get_folder_path.outputs.Var2 }}"
       - uses: actions/upload-artifact@v3
         if: always()
         with:
