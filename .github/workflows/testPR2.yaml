@@ -45,9 +45,9 @@ jobs:
         - name: Install Playwright Browsers
           run: npx playwright install --with-deps
         - name: Debug path
-          run: echo "path = $path"
+          run: echo "path = ${{ steps.get_path.outputs.path }}"        
         - name: Run Playwright tests
-          run: npx playwright test $path --project chromium
+          run: npx playwright test ${{ steps.get_path.outputs.path}} --project chromium
         - uses: actions/upload-artifact@v3
           if: always()
           with:
