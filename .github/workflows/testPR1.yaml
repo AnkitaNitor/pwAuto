@@ -37,11 +37,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: echo "PR = ${{  needs.get_pr_title.outputs.body }}"
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Debug Var2
+        run: echo "Var2 = ${{ needs.get_folder_path.outputs.Var2 }}"
       - name: Run Playwright tests
         run: npx playwright test  ${{ needs.get_folder_path.outputs.Var2 }}" --project chromium
       - uses: actions/upload-artifact@v3
