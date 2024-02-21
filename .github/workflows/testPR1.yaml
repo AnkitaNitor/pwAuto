@@ -21,6 +21,9 @@ jobs:
     name: get_folder_path
     needs: get_pr_title
     runs-on: ubuntu-latest
+    env:
+      Var1: ""
+      Var2: ""
     if: startsWith(needs.get_pr_title.outputs.body, 'RUNE2E')
     steps:
       - name: Echo PR Body
@@ -30,7 +33,7 @@ jobs:
           IFS='-' read -r Var1 Var2 <<< "${{ needs.get_pr_title.outputs.body }}"
           echo "Part 1: $Var1"
           echo "Part 2: $Var2"
-          echo "::set-output name=Var2::$Var2"
+          echo "::set-output name=${{env.Var2}}::$Var2"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Node.js
@@ -42,9 +45,9 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Debug Var2
-        run: echo "Var2 = ${{ needs.get_folder_path.outputs.Var2 }}"
+        run: echo "Var2 = ${{ env.Var2 }}"
       - name: Run Playwright tests
-        run: npx playwright test  ${{ needs.get_folder_path.outputs.Var2 }} --project chromium
+        run: npx playwright test  ${{ env.Var2 }} --project chromium
       - uses: actions/upload-artifact@v3
         if: always()
         with:
